@@ -22,7 +22,7 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     Returns:
         float: The result of the operation.
     """
-
+    
     if operation == "add":
         return num1 + num2
     elif operation == "subtract":
@@ -41,11 +41,29 @@ def main():
     
     print(f"===== Simple Calculator =====")
 
-    # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
-
+    while True:
+        try:
+            num1 = float(input("Enter the first number: "))
+            break
+        except ValueError:
+            print("Invalid input. Please reenter the first number.")
+    while True:
+        try:
+            num2 = float(input("Enter the second number: "))
+            break
+        except ValueError:
+            print("Invalid input. Please reenter the second number.")
+    # Ask the user for sample input
+    
+    while True:
+        try:
+            operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+            if operation not in ("add", "subtract", "mulitply", "divide"):
+                raise ValueError
+            break
+        except ValueError:
+            print("Invalid operation. Please reenter a valid operation.")
+            
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)
     print(f"The result of {operation}ing {num1} and {num2} is: {result}")
